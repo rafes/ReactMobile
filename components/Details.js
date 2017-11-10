@@ -14,8 +14,10 @@ export default class Details extends React.Component
 		const {state} = this.props.navigation;
 		return (
 				<View>
-					<Text>{state.params.name}</Text>
-					<Button
+					<Text>Title :{state.params.name}</Text>
+					<Text>Author:{state.params.authorname}</Text>
+					<Text>Year:{state.params.year}</Text>
+			<Button
 			  style={{fontSize: 20, color: 'green',paddingHorizontal:10}}
 			  styleDisabled={{color: 'red'}}
 			  title="Press Me"
