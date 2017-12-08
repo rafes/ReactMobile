@@ -9,6 +9,8 @@ import Component1 from  './components/Component1.js';
 import {Platform,StyleSheet,Text,View} from 'react-native';
 import {StackNavigator} from 'react-navigation';
 import Details from './components/Details.js';
+import Main from './components/Main.js';
+import AddNew from './components/AddNew';
 
 
 const styles = StyleSheet.create({
@@ -21,8 +23,9 @@ const styles = StyleSheet.create({
 });
 
 const Navigator = StackNavigator({
-  First: {screen: Component1},
-  Second:{screen :Details}
+  First: {screen: Main},
+  Second:{screen :Details},
+  Third:{screen:AddNew}
 });
 
 export default class App extends Component<{}> {
