@@ -10,7 +10,7 @@ import {
 
 
 
-export default class AddNew extends Component {
+export default class AddNewBookComponent extends Component {
   constructor(props) {
     super(props);
     

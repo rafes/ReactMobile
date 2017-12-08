@@ -1,7 +1,6 @@
 package com.reactnativeproject1;
 
 import android.app.Application;
-
 import com.facebook.react.ReactApplication;
 import com.burnweb.rnsendintent.RNSendIntentPackage;
 import com.facebook.react.ReactNativeHost;

@@ -1,6 +1,7 @@
 import React ,{Component} from 'react';
 import {AppRegistry, View , Text, TouchableOpacity,ListView,StyleSheet,Button,TextInput} from 'react-native';
-export default class Details extends React.Component
+
+export default class DetailsComponent extends React.Component
 {
 
 	constructor(props)

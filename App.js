@@ -5,12 +5,11 @@
  */
 
 import React, { Component } from 'react';
-import Component1 from  './components/Component1.js';
 import {Platform,StyleSheet,Text,View} from 'react-native';
 import {StackNavigator} from 'react-navigation';
-import Details from './components/Details.js';
-import Main from './components/Main.js';
-import AddNew from './components/AddNew';
+import DetailsComponent from './components/DetailsComponent.js';
+import BookListComponent from './components/BookListComponent.js';
+import AddNewBookComponent from './components/AddNewBookComponent';
 
 
 const styles = StyleSheet.create({
@@ -23,9 +22,9 @@ const styles = StyleSheet.create({
 });
 
 const Navigator = StackNavigator({
-  First: {screen: Main},
-  Second:{screen :Details},
-  Third:{screen:AddNew}
+  First: {screen: BookListComponent},
+  Second:{screen :DetailsComponent},
+  Third:{screen:AddNewBookComponent}
 });
 
 export default class App extends Component<{}> {

@@ -11,7 +11,7 @@ import {
 
 import ListItem from './ListItem.js';
 
-export default class Main extends Component {
+export default class BookListComponent extends Component {
 
     constructor(props){
         super(props);
