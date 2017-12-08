@@ -10,38 +10,48 @@ import {
 } from 'react-native';
 
 import ListItem from './ListItem.js';
+import Storage from './Storage.js';
 
+/*[{id:1,title:'Where Women are kings',author:'Christie Watson',year:2001},
+                        {id:2,title:'First Grave on the  Right',author:'Darynda Jones',year:2009},
+                        {id:3,title:'The book thief',author:'Markus Zusak',year:2000}]*/
 export default class BookListComponent extends Component {
 
     constructor(props){
         super(props);
         this.state = {
-            bookArray: [{id:1,title:'Where Women are kings',author:'Christie Watson',year:2001},
-                        {id:2,title:'First Grave on the  Right',author:'Darynda Jones',year:2009},
-                        {id:3,title:'The book thief',author:'Markus Zusak',year:2000}],
+            books:[] ,
             noteText: '',
         };
         this.stateModified();
     }
 
-    stateModified(newBooks)
+     async componentDidMount() {
+      const books = await Storage.getBooks();
+      this.setState({
+        books: books,
+      });
+    }
+
+    async stateModified(newBooks)
     {
-        this.setState({bookArray:newBooks});
+        this.setState({books:newBooks});
+        await Storage.setBooks(newBooks);
         this.render();
     }
 
     render() {
         const { navigate } = this.props.navigation;
-        let books = this.state.bookArray.map((val, key)=>{
+        let books = this.state.books.map((val, key)=>{
             return <ListItem key={key} keyval={key} val={val}
-                    deleteMethod={()=>this.deleteNote(key)} onPress={()=>navigate('Second',{books:this.state.bookArray,book:val,update: this.stateModified.bind(this)})}/>
+                    deleteMethod={()=>this.deleteNote(key)} onPress={()=>navigate('Second',{books:this.state.books,book:val,update: this.stateModified.bind(this)})}/>
         });
         return (
             <View style={styles.container}>
                 <View style={styles.header}>
                     <Text style={styles.headerText}>- Your Books -</Text>
                     <Button
-                  onPress={() => this.props.navigation.navigate('Third', {update: this.stateModified.bind(this), books: this.state.bookArray})}
+                  onPress={() => this.props.navigation.navigate('Third', {update: this.stateModified.bind(this), books: this.state.books})}
                   title="Add new"
                 />
                 </View>
@@ -54,9 +64,10 @@ export default class BookListComponent extends Component {
     }
 
 
-    deleteNote(key){
-        this.state.bookArray.splice(key, 1);
-        this.setState({bookArray: this.state.bookArray});
+    async deleteNote(key){
+        this.state.books.splice(key, 1);
+        this.setState({books: this.state.books});
+        await Storage.setBooks(this.state.books);
     }
 }
 
